@@ -6,28 +6,10 @@ body {
 }
 
 main {
-    margin-bottom: 10rem;
+    margin-bottom: 7rem;
 }
 
-span {
-    font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", Times, Symbola, Aegyptus, Code2000, Code2001, Code2002, Musica, serif, LastResort;
-    cursor: default;
-    display: inline-block;
-    /* font-size: 2rem; */
-    /* margin: 0.5rem; */
-    /* position: relative; */
-    /* transition: all 1s ease; */
 
-    /* width: 2rem;
-    border-bottom: 1px solid #eee;
-    padding: 1rem; */
-    /* width: 5rem; */
-    /* height: 5rem; */
-    /* margin: auto; */
-    /* border: 1px solid #f0f0f0; */
-    /* text-align: center; */
-    /* vertical-align: middle; */
-}
 
 .toolbar {
     position: fixed;
@@ -42,88 +24,85 @@ button {
     padding: 1rem;
 }
 
-#emoji-string {
-    /* margin: 0; */
-}
+/*
+ * Emoji dump
+ */
 
-/* Grid Layout */
-
-/* #emoji-string[data-grid="true"] {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-} */
-
-#emoji-string[data-grid="true"] span {
-    /* width: 5rem;
-    height: 5rem;
-    text-align: center; */
+#emojis {
+    font-size: 2rem;
     margin: 0.25rem;
 }
 
-/* Size */
-
-#emoji-string[data-size="0"] {
-    display: flex;
-    flex-wrap: wrap;
-    /* justify-content: space-around; */
+#emojis span {
+    font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", Times, Symbola, Aegyptus, Code2000, Code2001, Code2002, Musica, serif, LastResort;
+    cursor: default;
+    display: inline-block;
 }
 
-#emoji-string[data-size="0"] {
-    font-size: 0.5rem;
-    /* line-height: 0.5; */
-    /* vertical-align: top; */
-    /* display: block; */
+/* Spacing */
+
+#emojis[data-spacing="0"] span {
+    margin: 0;
+}
+#emojis[data-spacing="1"] span {
+    margin: 0.1em;
+}
+#emojis[data-spacing="2"] span {
+    margin: 0.2em;
+}
+#emojis[data-spacing="3"] span {
+    margin: 0.3em;
+}
+#emojis[data-spacing="4"] span {
+    margin: 0.4em;
+}
+#emojis[data-spacing="5"] span {
+    margin: 0.5em;
+}
+#emojis[data-spacing="6"] span {
+    margin: 0.6em;
+}
+#emojis[data-spacing="7"] span {
+    margin: 0.7em;
+}
+#emojis[data-spacing="8"] span {
+    margin: 0.8em;
+}
+#emojis[data-spacing="9"] span {
+    margin: 0.9em;
+}
+#emojis[data-spacing="10"] span {
+    margin: 1em;
 }
 
-#emoji-string[data-size="1"] {
-    font-size: 1rem;
+span:active {
+    filter: blur(5px);
 }
-
-#emoji-string[data-size="2"] {
-    font-size: 2rem;
-}
-
-#emoji-string[data-size="3"] {
-    font-size: 4rem;
-}
-
-
-.emoji-list {
-    /* display: flex; */
-    /* flex-wrap: wrap; */
-    /* justify-content: space-around; */
-}
-
-span:hover {
-    /* transform: scale(2.5); */
-    /* font-size: 5rem; */
-    /* position: absolute; */
-    /* position: relative; */
-}
-
-
 
 .meta {
+    align-items: center;
     background: white;
-    list-style-type: none;
-    position: fixed;
-    left: 0;
-    right: 0;
     bottom: 0;
+    display: flex;
+    left: 0;
+    list-style-type: none;
     margin: 0;
     padding: 0.75rem 1rem;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, .30);
-    display: flex;
-    align-items: center;
-}
-
-.meta li {
-    /* display: inline-block; */
-    /* margin-bottom: 0.5rem; */
+    position: fixed;
+    right: 0;
 }
 
 #meta-char {
+    cursor: pointer;
     font-size: 4rem;
     margin-right: 1rem;
+    user-select: all;
+}
+
+#meta-char::selection {
+    background: white;
+}
+
+#meta-label {
+    cursor: pointer;
 }

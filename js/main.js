@@ -6,37 +6,52 @@
     const metaCharEl = document.getElementById("meta-char");
     const metaLabelEl = document.getElementById("meta-label");
 
-    function handleMouseOver(event) {
+    function handleClick(event) {
         if (event.target.matches("span")) {
             metaCharEl.innerText = event.target.innerText;
             metaLabelEl.innerText = event.target.getAttribute("aria-label");
         }
     }
 
-    // const emojis = document.querySelectorAll(".emojis span");
-    // console.log(emojis);
-    // for (let index = 0; index < emojis.length; index++) {
-    //     emojis[index].addEventListener("mouseover", handleMouseOver);
-    // }
+    function parseParams() {
 
-    let emojiStringEl = document.getElementById("emoji-string");
-    emojiStringEl.addEventListener("mouseover", handleMouseOver);
+        let query = window.location.search.substring(1);
+        if (query.length) {
+            // We have parameters, so try to parse them and update current settings
+            let params = query.split("-").map(Number);
 
-    document.getElementById("layout-button").addEventListener("click", () => {
-        emojiStringEl.dataset.grid = !(emojiStringEl.dataset.grid == "true");
+            let fontSize = parseInt(params[0], 10);
+            if (!isNaN(fontSize)) {
+                emojisElem.style.fontSize = `${fontSize}px`; 
+            }
 
-        // let layout = parseInt(emojiStringEl.dataset.layout, 10);
-        // layout = layout < 2 ? layout + 1 : 0;
-        // emojiStringEl.dataset.layout = layout;
-        // Math.min(emojiStringEl.dataset.layout + 1, 3);
+            let margin = parseInt(params[1], 10);
+            if (!isNaN(margin)) {
+                emojisElem.dataset.spacing = `${margin}`; 
+            }
+
+            // Number.isInteger(params[0]) ? App.clamp(params[0], 0, 16) : 16;
+        }
+    }
+
+    let emojisElem = document.getElementById("emojis");
+
+    parseParams();
+
+
+    emojisElem.addEventListener("click", handleClick);
+
+    metaCharEl.addEventListener("click", (event) => {
+        document.execCommand('copy');
+        metaLabelEl.innerText = "Copied to clipboard";
     });
 
-    document.getElementById("size-button").addEventListener("click", () => {
-        let size = parseInt(emojiStringEl.dataset.size, 10);
-        size = size < 3 ? size + 1 : 0;
-        emojiStringEl.dataset.size = size;
+    metaLabelEl.addEventListener("click", (event) => {
+        event.preventDefault();
+        let url = `https://www.google.com/search?q=${metaCharEl.innerText}`;
+        window.open(url, "_blank");
     });
 
-    document.title = document.querySelectorAll("#emoji-string span").length;
+    document.title += `: ${document.querySelectorAll("#emojis span").length} emojis`;
 
 }());
