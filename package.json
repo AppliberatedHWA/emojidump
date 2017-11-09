@@ -1,0 +1,25 @@
+{
+    "name": "repository",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "eslintConfig": {
+        "env": {
+            "browser": true
+        },
+        "parserOptions": {
+            "ecmaVersion": 6
+        },
+        "extends": "eslint:recommended",
+        "rules": {
+            "linebreak-style": ["error", "windows"],
+            "max-len": ["error", 120],
+            "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+        }
+    }
+}
