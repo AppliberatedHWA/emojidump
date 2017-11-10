@@ -5,39 +5,52 @@ body {
     margin: 0;
 }
 
-main {
-    margin-bottom: 7rem;
-}
 
 
 
-.toolbar {
-    position: fixed;
-    right: 0;
-    top: 2rem;
-}
+
 
 button {
-    background: black;
+    /* background: black; */
+    background: transparent;
     border: none;
-    color: white;
-    padding: 1rem;
+    color: black;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    outline: none;
+    user-select: none;
+}
+
+button:active {
+    filter: blur(5px);
+}
+
+i {
+    cursor: default;
+    display: inline-block;
+    font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", Times, Symbola, Aegyptus, Code2000, Code2001, Code2002, Musica, serif, LastResort;
+    font-style: normal;
 }
 
 /*
  * Emoji dump
  */
 
-#emojis {
+#emojidump {
     font-size: 2rem;
-    margin: 0.25rem;
+    margin: 0.25rem 0 7rem 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-#emojis span {
-    font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", Times, Symbola, Aegyptus, Code2000, Code2001, Code2002, Musica, serif, LastResort;
-    cursor: default;
-    display: inline-block;
+/* #emojidump i {
+    margin: 0.25rem;
+} */
+
+#emojidump i:active {
+    filter: blur(5px);
 }
+
 
 /* Spacing */
 
@@ -75,25 +88,38 @@ button {
     margin: 1em;
 }
 
-span:active {
-    filter: blur(5px);
-}
 
-.meta {
+
+.details {
     align-items: center;
     background: white;
-    bottom: 0;
+
     display: flex;
-    left: 0;
+    flex-direction: row;
+
     list-style-type: none;
     margin: 0;
-    padding: 0.75rem 1rem;
+    padding: 1rem 3rem 1rem 1rem;
+    /* background: rgba(0, 0, 0, 0.75); */
+    /* color: white; */
+
+
+    /* border-image: linear-gradient(to right bottom, blue 49.5%, transparent 50%);
+    border-top-width: 10rem;
+    border-style: solid; */
+}
+
+footer {
+    /* background: linear-gradient(to left top, white 49.5%, transparent 50%); */
+    /* padding-top: 2.5rem;     */
     position: fixed;
     right: 0;
+    left: 0;
+    bottom: 0;
+    /* clip-path: polygon(70% 0, 100% 0, 100% 100%, 0 100%); */
 }
 
 #meta-char {
-    cursor: pointer;
     font-size: 4rem;
     margin-right: 1rem;
     user-select: all;
@@ -104,5 +130,11 @@ span:active {
 }
 
 #meta-label {
-    cursor: pointer;
+}
+
+.details .actions {
+    /* margin-left: auto; */
+    /* float: right; */
+    position: absolute;
+    right: 0;
 }

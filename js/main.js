@@ -1,16 +1,33 @@
 
-(function() {
+(function () {
 
     "use strict";
 
-    const metaCharEl = document.getElementById("meta-char");
+    const metaCharElem = document.getElementById("meta-char");
     const metaLabelEl = document.getElementById("meta-label");
 
     function handleClick(event) {
-        if (event.target.matches("span")) {
-            metaCharEl.innerText = event.target.innerText;
+        if (event.target.matches("i")) {
+            metaCharElem.innerText = event.target.innerText;
             metaLabelEl.innerText = event.target.getAttribute("aria-label");
         }
+    }
+
+    function handleDocumentCopy(event) {
+        event.preventDefault();
+        if (event.clipboardData) {
+            event.clipboardData.setData("text/plain", metaCharElem.innerText);
+            metaLabelEl.innerText = "Copied to clipboard";
+        }
+    }
+
+    function handleCopyButtonClick() {
+        document.execCommand('copy');
+    }
+
+    function handleSearchButtonClick() {
+        let url = `https://www.google.com/search?q=${metaCharElem.innerText}`;
+        window.open(url, "_blank");
     }
 
     function parseParams() {
@@ -22,36 +39,30 @@
 
             let fontSize = parseInt(params[0], 10);
             if (!isNaN(fontSize)) {
-                emojisElem.style.fontSize = `${fontSize}px`; 
+                emojiDumpElem.style.fontSize = `${fontSize}px`;
             }
 
             let margin = parseInt(params[1], 10);
             if (!isNaN(margin)) {
-                emojisElem.dataset.spacing = `${margin}`; 
+                emojiDumpElem.dataset.spacing = `${margin}`;
             }
 
             // Number.isInteger(params[0]) ? App.clamp(params[0], 0, 16) : 16;
         }
     }
 
-    let emojisElem = document.getElementById("emojis");
+    let emojiDumpElem = document.getElementById("emojidump");
 
     parseParams();
 
 
-    emojisElem.addEventListener("click", handleClick);
+    emojiDumpElem.addEventListener("click", handleClick);
 
-    metaCharEl.addEventListener("click", (event) => {
-        document.execCommand('copy');
-        metaLabelEl.innerText = "Copied to clipboard";
-    });
+    document.getElementById("copy-button").addEventListener("click", handleCopyButtonClick);
+    document.getElementById("search-button").addEventListener("click", handleSearchButtonClick);
 
-    metaLabelEl.addEventListener("click", (event) => {
-        event.preventDefault();
-        let url = `https://www.google.com/search?q=${metaCharEl.innerText}`;
-        window.open(url, "_blank");
-    });
+    document.addEventListener("copy", handleDocumentCopy);
 
-    document.title += `: ${document.querySelectorAll("#emojis span").length} emojis`;
+    document.title += `: ${document.querySelectorAll("#emojidump i").length} emojis`;
 
 }());

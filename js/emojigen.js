@@ -4,14 +4,16 @@
 
     "use strict";
 
-    const emojiCells = window.$$("td.rchars");
-    const emojiRows = emojiCells.map((cell) => cell.parentElement).filter((row) => row.children.length === 15);
+    const emojiCells = window.$$("table:first-of-type td.rchars");
+    // const emojiRows = emojiCells.map((cell) => cell.parentElement).filter((row) => row.children.length === 15);
+    const emojiRows = emojiCells.map((cell) => cell.parentElement);
+    console.log(emojiRows);
     const html = emojiRows.map((row) => {
 
         const tds = row.children;
         const shortName = tds[14].innerText;
         const char = tds[2].innerText;
-        return `<span aria-label="${shortName}">${char}</span>`;
+        return `<i aria-label="${shortName}">${char}</i>`;
 
     });
 
